@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Upsell – Acceso Especial</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    :root { --dark:#0f172a; --muted:#94a3b8; --ok:#22c55e; }
+    body{ background:#0b1021; color:#e5e7eb; }
+    .wrap{ max-width: 880px; }
+    .disclaimer{
+      background:#111827; border:1px solid rgba(255,255,255,.08); border-radius:14px;
+    }
+    .ratio{ border-radius:14px; overflow:hidden; border:1px solid rgba(255,255,255,.08); }
+    .btn-buy{ font-weight:700; }
+    .qr-box{ border:1px dashed rgba(255,255,255,.25); border-radius:14px; padding:16px; display:none; }
+    .qr-img{ width:100%; max-width:320px; border-radius:12px; }
+    .small-muted{ color: var(--muted); }
+  </style>
+</head>
+<body>
+  <main class="container py-4 wrap">
+
+    <!-- DISCLAIMER / “STOP” -->
+    <section class="disclaimer p-3 p-md-4 mb-3 text-center">
+      <div class="d-flex align-items-center justify-content-center gap-3">
+        <div style="width:64px;height:64px;border-radius:50%;background:#ef444414;display:grid;place-items:center;border:1px solid #ef4444;">
+          <span style="color:#ef4444;font-weight:800;">STOP</span>
+        </div>
+        <div class="text-start">
+          <h6 class="mb-1" style="font-weight:800;">¡Aún no está finalizado!</h6>
+          <div class="small small-muted">
+            No presione el botón “Volver”, esto puede causar errores en su pedido.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HEADLINE + VSL -->
+    <section class="mb-3">
+      <h1 class="h4 fw-bold mb-3 text-center">Vea esta primera clase</h1>
+      <div class="ratio ratio-16x9">
+        <!-- Troque o src pelo seu player (YouTube/Vimeo/MP4). Também aceita ?video=URL na querystring -->
+        <iframe id="vsl" src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0"
+                title="VSL" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="text-center mb-4">
+      <button id="btnBuy" class="btn btn-success btn-lg btn-buy">
+        ¡Sí, recibir mi acceso!
+      </button>
+      <div class="mt-2">
+        <a class="d-none" id="decline" href="#no-gracias" class="small small-muted">No, gracias</a>
+      </div>
+      <div class="small small-muted mt-2">Precio especial único en esta página</div>
+    </section>
+
+    <!-- QR GERADO + STATUS -->
+    <section id="qrSection" class="qr-box text-center mx-auto">
+      <h6 class="fw-bold mb-2">Escanee el QR para pagar (200,00 BOB)</h6>
+      <img id="qrImage" class="qr-img mb-2" alt="QR de pago"/>
+      <div id="status" class="small small-muted">Esperando pago…</div>
+    </section>
+
+  </main>
+
+  <script>
+  // ===== Config =====
+  const API_BASE = ''; // se servir em outra origem, coloque aqui (ex.: 'https://meu-dominio.com')
+
+  // Permite trocar o vídeo via ?video=URL
+  (function setVideoFromQS(){
+    const qs = new URLSearchParams(location.search);
+    const v = qs.get('video');
+    if (v) document.getElementById('vsl').src = v;
+  })();
+
+  const btnBuy     = document.getElementById('btnBuy');
+  const decline    = document.getElementById('decline');
+  const qrSection  = document.getElementById('qrSection');
+  const qrImage    = document.getElementById('qrImage');
+  const statusEl   = document.getElementById('status');
+
+  let pollTimer = null;
+  let currentPaymentId = null;
+
+  // ===== Valor do upsell (BOB) =====
+  const UPSELL_AMOUNT_BOB = 200;
+
+  // Sincroniza o preço do título com o valor definido
+  (function syncPriceHeading(){
+    const h6 = qrSection.querySelector('h6');
+    if (h6) h6.innerHTML = `Escanee el QR para pagar (${UPSELL_AMOUNT_BOB.toLocaleString('es-BO', {minimumFractionDigits:2, maximumFractionDigits:2})} BOB)`;
+  })();
+
+  // URL de redirecionamento quando pago
+  const onPaidRedirect = '/success';
+
+  btnBuy.addEventListener('click', async () => {
+    try {
+      btnBuy.disabled = true;
+      btnBuy.textContent = 'Generando pago...';
+
+      // Dados mínimos do cliente: tenta pegar da querystring (name, email, phone)
+      const qs    = new URLSearchParams(location.search);
+      const name  = qs.get('name')  || 'Cliente Upsell';
+      const email = qs.get('email') || 'upsell@example.com';
+      const phone = qs.get('phone') || null;
+
+      // Monta payload esperado pelo seu server:
+      //  - product: string
+      //  - product_type: 'upsell'  <<<<< IMPORTANTE
+      //  - amount: número (BOB)
+      const payload = {
+        customer: { name, email, phone },
+        amount: UPSELL_AMOUNT_BOB,
+        extras: [], // se tiver add-ons no upsell, popule aqui
+        product: 'Upsell Mentoría',
+        product_type: 'upsell'
+      };
+
+      // POST para criar pagamento
+      const r = await fetch(`${API_BASE}/api/create-payment`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      const data = await r.json();
+      if (!r.ok || !data.success) throw new Error(data.error || 'Falha ao criar pagamento');
+
+      // Exibir QR
+      currentPaymentId = data.qr_id || data.payment_id;
+      qrImage.src = data.qr_code_image;
+      qrSection.style.display = 'block';
+      statusEl.textContent = 'Esperando pago…';
+
+      // Iniciar polling
+      startPolling();
+
+      btnBuy.textContent = 'Aguardando pago…';
+    } catch (e) {
+      console.error(e);
+      btnBuy.disabled = false;
+      btnBuy.textContent = '¡Sí, recibir mi acceso!';
+      alert('No fue posible generar el QR. Intente nuevamente.');
+    }
+  });
+
+  function startPolling(){
+    clearInterval(pollTimer);
+    pollTimer = setInterval(async () => {
+      try {
+        if (!currentPaymentId) return;
+        const r = await fetch(`${API_BASE}/api/payment-status/${encodeURIComponent(currentPaymentId)}`);
+        const s = await r.json();
+
+        if (!s.success) return;
+
+        if (s.status === 'paid' || s.is_paid === true) {
+          statusEl.textContent = 'Pago aprobado. Redirigiendo…';
+          clearInterval(pollTimer);
+          setTimeout(() => location.href = onPaidRedirect, 700);
+        } else if (s.status === 'expired') {
+          statusEl.textContent = 'QR expirado. Vuelva a generar el pago.';
+          btnBuy.disabled = false;
+          btnBuy.textContent = '¡Sí, recibir mi acceso!';
+          clearInterval(pollTimer);
+        } else {
+          statusEl.textContent = 'Esperando pago…';
+        }
+      } catch (err) {
+        console.warn('Polling error', err);
+      }
+    }, 5000);
+  }
+
+  // "No gracias"
+  decline.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.location.href = '/?skip-upsell=1';
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mentoría de Cero al Millón - Checkout</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container py-3">
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <h2 class="mb-0" style="color: var(--primary-color); font-weight: bold;">
+            <i class="fas fa-crown"></i> Mentoría de Cero al Millón
+          </h2>
+        </div>
+        <div class="col-md-6 text-end">
+          <span class="badge bg-success fs-6">
+            <i class="fas fa-lock"></i> Compra 100% Segura
+          </span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Countdown -->
+  <div class="countdown">
+    <h4><i class="fas fa-clock"></i> ¡Oferta por tiempo limitado!</h4>
+    <div class="countdown-timer" id="countdown">06:59</div>
+    <p class="mb-0" id="oferta-expirada">Esta oferta expira pronto</p>
+  </div>
+
+  <img src="assets/images/banner.jpeg" alt="Banner" style="width: 100%; height: auto;">
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container">
+      <div class="row py-3">
+        <div class="col-lg-6">
+          <h1 class="hero-title">MENTORÍA DE CERO AL MILLÓN</h1>
+          <p class="hero-subtitle">Transforma tu vida financiera con la mentoría más completa del mercado</p>
+
+          <div class="benefits-list py-4">
+            <div class="benefit-item"><i class="fas fa-check-circle"></i><span>Acceso a las clases inmediatamente después de la compra</span></div>
+            <div class="benefit-item"><i class="fas fa-check-circle"></i><span>Aclaración de dudas y acompañamiento en vivo</span></div>
+            <div class="benefit-item"><i class="fas fa-check-circle"></i><span>Todos los pasos que necesitas para ser millonario</span></div>
+            <div class="benefit-item"><i class="fas fa-gift"></i><span>Sorteo de 3 notebooks para los primeros 50 inscritos</span></div>
+            <div class="benefit-item"><i class="fas fa-plane"></i><span>Viaje todo pagado a Brasil con estilo de vida millonario</span></div>
+          </div>
+
+          <div class="motivational-section">
+            <div class="motivational-card">
+              <h4><i class="fas fa-rocket"></i> ¡Tu transformación comienza HOY!</h4>
+              <p>No esperes más para cambiar tu realidad financiera. Miles de personas ya han transformado sus vidas con esta mentoría exclusiva.</p>
+              <div class="stats-row">
+                <div class="stat-item"><div class="stat-number">+5,000</div><div class="stat-label">Estudiantes</div></div>
+                <div class="stat-item"><div class="stat-number">98%</div><div class="stat-label">Satisfacción</div></div>
+                <div class="stat-item"><div class="stat-number">24/7</div><div class="stat-label">Soporte</div></div>
+              </div>
+              <div class="urgency-text"><i class="fas fa-fire"></i> <strong>Solo quedan 12 cupos disponibles</strong></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <!-- Checkout Card -->
+          <div class="checkout-card">
+            <form id="checkoutForm" autocomplete="on">
+              <div class="mb-3">
+                <label class="form-label">Nombre</label>
+                <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Tu nombre" autocomplete="name" required>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input type="email" id="email" name="email" class="form-control" placeholder="tu@email.com" autocomplete="email" required>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Teléfono</label>
+                <input type="tel" id="telefono" name="telefono" class="form-control" placeholder="+591 7123 4567" autocomplete="tel" required>
+              </div>
+
+            <!-- Extras -->
+<div class="mb-3">
+  <label class="form-label">Servicios adicionales (opcionales):</label>
+  <div class="extras-section" style="background:#f8f9fa;padding:15px;border-radius:10px;border:1px solid #dee2e6;">
+    
+    <!-- Mentoria VIP -->
+    <div class="extra-item" style="display:flex;justify-content:space-between;align-items:center;padding:10px;margin:5px 0;background:white;border-radius:8px;border:1px solid #e9ecef;">
+      <div style="display:flex;align-items:center;gap:12px;flex:1;">
+                <img class="extra-thumb" style="max-width: 100px;" src="assets/images/acceso vit (2).png" alt="Mentoría VIP personalizada">
+
+        <div class="form-check" style="flex:1;">
+          <input class="form-check-input" type="checkbox" id="mentoriaVip" value="50" data-description="Mentoría VIP personalizada" style="margin-right:10px;">
+          <label class="form-check-label" for="mentoriaVip" style="margin:0;">
+            <small class="d-block text-muted">1 Año de Acceso se Volverá Vitalício</small>
+          </label>
+        </div>
+      </div>
+      <span class="extra-price" style="background:#e8f5e8;color:#28a745;padding:5px 10px;border-radius:15px;font-weight:bold;font-size:.9rem;">+Bs 50,00</span>
+    </div>
+
+    <!-- Material Extra -->
+    <div class="extra-item" style="display:flex;justify-content:space-between;align-items:center;padding:10px;margin:5px 0;background:white;border-radius:8px;border:1px solid #e9ecef;">
+      <div style="display:flex;align-items:center;gap:12px;flex:1;">
+                <img class="extra-thumb" style="max-width: 100px;" src="assets/images/grupo.png" alt="Mentoría VIP personalizada">
+        <div class="form-check" style="flex:1;">
+          <input class="form-check-input" type="checkbox" id="materialExtra" value="15" data-description="Material de estudio físico" style="margin-right:10px;">
+          <label class="form-check-label" for="materialExtra" style="margin:0;">
+            <small class="d-block text-muted">Acceso exclusivo a grupo de Networking entre alunos</small>
+          </label>
+        </div>
+      </div>
+      <span class="extra-price" style="background:#e8f5e8;color:#28a745;padding:5px 10px;border-radius:15px;font-weight:bold;font-size:.9rem;">+Bs 15,00</span>
+    </div>
+
+  </div>
+</div>
+
+              <!-- Total -->
+              <div class="total-section mb-3">
+                <div class="d-flex justify-content-between align-items-center">
+                  <span><strong>Valor base:</strong></span>
+                  <span>Bs <span id="basePrice">497,00</span></span>
+                </div>
+                <div class="d-flex justify-content-between align-items-center" id="extrasTotal" style="display:none;">
+                  <span><strong>Extras:</strong></span>
+                  <span>+Bs <span id="extrasPrice">0,00</span></span>
+                </div>
+                <hr>
+                <div class="d-flex justify-content-between align-items-center">
+                  <span><strong>Total:</strong></span>
+                  <span class="text-primary"><strong>Bs <span id="totalPrice">147,00</span></strong></span>
+                </div>
+              </div>
+
+              <!-- Información de pago por QR -->
+              <div class="mb-3">
+                <div class="pix-info-card">
+                  <h5><i class="fas fa-qrcode"></i> Información de pago con QR:</h5>
+                  <ul class="pix-benefits">
+                    <li><strong>Valor:</strong> Bs <span id="pixPrice">147,00</span></li>
+                    <li><strong>Acreditación rápida.</strong></li>
+                    <li>Abre la app de tu banco y escanea el código QR.</li>
+                    <li>Pago seguro brindado por la entidad financiera.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-primary w-100 mb-3" id="submitBtn">
+                <i class="fas fa-lock"></i> FINALIZAR COMPRA SEGURA
+              </button>
+
+              <!-- QR inline -->
+              <div id="qrCodeSection" style="display:none;margin-top:20px;">
+                <div class="qr-container" style="background:#f8f9fa;padding:25px;border-radius:15px;text-align:center;border:2px solid #28a745;">
+                  <div id="qrLoading" style="display:block;">
+                    <div class="spinner-border text-primary mb-3" role="status">
+                      <span class="visually-hidden">Generando QR...</span>
+                    </div>
+                    <p class="text-muted">Generando código de pago...</p>
+                  </div>
+
+                  <div id="qrDisplay" style="display:none;">
+                    <div class="payment-amount mb-3" style="background:linear-gradient(135deg,#28a745,#20c997);color:white;padding:15px;border-radius:10px;">
+                      <h4 style="margin:0;font-weight:bold;">
+                        <i class="fas fa-money-bill-wave"></i>
+                        Valor: Bs <span id="qrTotalPrice">147,00</span>
+                      </h4>
+                    </div>
+
+                    <div class="qr-image mb-3" style="background:white;padding:20px;border-radius:10px;display:inline-block;">
+                      <img id="qrImage" src="" alt="Código QR" style="max-width:250px;width:100%;">
+                    </div>
+
+                    <div class="payment-instructions mb-3" style="background:white;padding:15px;border-radius:10px;text-align:left;">
+                      <h6 style="color:#495057;margin-bottom:10px;text-align:center;">
+                        <i class="fas fa-mobile-alt"></i> ¿Cómo pagar?
+                      </h6>
+                      <ol style="margin:0;color:#6c757d;padding-left:20px;">
+                        <li>Abre la app de tu banco.</li>
+                        <li>Selecciona “Pagar con QR”.</li>
+                        <li>Escanea el código de arriba.</li>
+                        <li>Confirma el pago.</li>
+                      </ol>
+                    </div>
+
+                    <div class="payment-status">
+                      <button type="button" class="btn btn-outline-primary" id="checkPaymentInlineBtn">
+                        <i class="fas fa-sync"></i> Verificar pago
+                      </button>
+                      <div class="alert alert-info mt-3" style="border-radius:10px;">
+                        <i class="fas fa-clock"></i>
+                        <strong>Estado:</strong> <span id="paymentStatus">Pendiente</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="text-center mt-3">
+                <small class="text-muted" style="color:#fff !important;">
+                  <i class="fas fa-shield-alt"></i> Transacción 100% segura y protegida
+                </small>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Badges -->
+  <section class="container text-center py-2">
+    <div class="security-badges">
+      <div class="security-badge"><i class="fas fa-medal"></i><div><strong>100%</strong></div><div>Satisfacción Garantizada</div></div>
+      <div class="security-badge"><i class="fas fa-lock"></i><div><strong>Compra</strong></div><div>100% Segura</div></div>
+      <div class="security-badge"><i class="fas fa-certificate"></i><div><strong>Certificado</strong></div><div>de Calidad</div></div>
+    </div>
+  </section>
+
+  <!-- Bonus -->
+  <section class="container">
+    <div class="bonus-section">
+      <h3 class="text-center mb-4" style="color:var(--primary-color);"><i class="fas fa-gift"></i> BONOS EXCLUSIVOS INCLUIDOS</h3>
+      <div class="bonus-item"><i class="fas fa-laptop"></i><div><strong>Sorteo de 3 Notebooks</strong><br><small>Para las primeras 50 personas que se inscriban</small></div></div>
+      <div class="bonus-item"><i class="fas fa-plane"></i><div><strong>Viaje Todo Pagado a Brasil</strong><br><small>Con estilo de vida millonario incluido</small></div></div>
+      <div class="bonus-item"><i class="fas fa-users"></i><div><strong>Comunidad VIP</strong><br><small>Acceso exclusivo al grupo de millonarios</small></div></div>
+      <div class="bonus-item"><i class="fas fa-book"></i><div><strong>Ebook "Secretos del Éxito"</strong><br><small>Guía completa de mindset millonario</small></div></div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="container">
+    <h3 class="text-center mb-5" style="color:var(--primary-color);">Lo que dicen nuestros estudiantes</h3>
+    <div class="row">
+      <div class="col-md-6"><div class="testimonial"><p>"En solo 6 meses logré multiplicar mis ingresos por 10. Esta mentoría cambió mi vida completamente."</p><small><strong>- María González, Barcelona</strong></small></div></div>
+      <div class="col-md-6"><div class="testimonial"><p>"Los métodos que enseñan realmente funcionan. Ahora tengo múltiples fuentes de ingresos pasivos."</p><small><strong>- Carlos Martínez, Madrid</strong></small></div></div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="container text-center py-5">
+    <div class="row">
+      <div class="col-12">
+        <p class="mb-2">© 2025 Mentoría de Cero al Millón. Todos los derechos reservados.</p>
+        <p class="text-muted">
+          <a href="#" class="text-muted" style="color:#fff !important;">Términos de uso</a> |
+          <a href="#" class="text-muted" style="color:#fff !important;">Política de privacidad</a> |
+          <a href="#" class="text-muted" style="color:#fff !important;">Contacto</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+<script>
+/* ===== Config ===== */
+const API_BASE = ''; // ex.: 'http://localhost:3000'
+
+/* ===== Estado ===== */
+let currentQRId = null;
+let paymentCheckInterval = null;
+let qrEverGenerated = false; // indica se já foi gerado ao menos um QR
+let isProcessing = false;    // evita chamadas concorrentes
+const BASE_PRICE = 497;      // Bs
+
+/* ===== Helpers ===== */
+const fmt = (n) =>
+  Number(n ?? 0).toLocaleString('es-BO', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+function debounce(fn, wait = 800) {
+  let t;
+  return (...args) => {
+    clearTimeout(t);
+    t = setTimeout(() => fn.apply(null, args), wait);
+  };
+}
+
+/* ===== DOM ===== */
+const form = document.getElementById('checkoutForm');
+const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+const basePriceEl   = document.getElementById('basePrice');
+const extrasPriceEl = document.getElementById('extrasPrice');
+const totalPriceEl  = document.getElementById('totalPrice');
+const pixPriceEl    = document.getElementById('pixPrice');
+const extrasTotalEl = document.getElementById('extrasTotal');
+const submitBtn     = document.getElementById('submitBtn');
+
+/* QR inline */
+const qrCodeSection   = document.getElementById('qrCodeSection');
+const qrLoading       = document.getElementById('qrLoading');
+const qrDisplay       = document.getElementById('qrDisplay');
+const qrImage         = document.getElementById('qrImage');
+const qrTotalPrice    = document.getElementById('qrTotalPrice');
+const checkPaymentInlineBtn = document.getElementById('checkPaymentInlineBtn');
+const paymentStatus   = document.getElementById('paymentStatus');
+
+/* ===== Preços ===== */
+function updatePricing() {
+  let extrasTotal = 0;
+  const selectedExtras = [];
+
+  checkboxes.forEach(cb => {
+    if (cb.checked) {
+      const val = parseFloat(cb.value || '0');
+      extrasTotal += val;
+      selectedExtras.push({
+        id: cb.id,
+        description: cb.dataset.description || '',
+        value: val
+      });
+    }
+  });
+
+  const total = BASE_PRICE + extrasTotal;
+
+  basePriceEl.textContent   = fmt(BASE_PRICE);
+  extrasPriceEl.textContent = fmt(extrasTotal);
+  totalPriceEl.textContent  = fmt(total);
+  pixPriceEl.textContent    = fmt(total);
+
+  extrasTotalEl.style.display = extrasTotal > 0 ? 'flex' : 'none';
+  return { total, selectedExtras };
+}
+
+/* ===== Success Screen (opcional) ===== */
+function showSuccessMessage() {
+  document.body.innerHTML = `
+    <div class="container text-center py-5">
+      <div class="success-message" style="background:white;border-radius:20px;padding:40px;margin-top:50px;box-shadow:0 20px 40px rgba(0,0,0,0.1);">
+        <i class="fas fa-check-circle text-success" style="font-size:4rem;"></i>
+        <h2 class="mt-3">¡Pago aprobado!</h2>
+        <p class="lead">Tu compra ha sido procesada exitosamente.</p>
+        <p>Recibirás un email con el acceso al curso en breve.</p>
+        <hr>
+        <p class="text-muted">Gracias por confiar en nuestra mentoría</p>
+        <button class="btn btn-primary btn-lg" onclick="window.location.href='/'">
+          <i class="fas fa-home"></i> Volver al inicio
+        </button>
+      </div>
+    </div>
+  `;
+}
+
+/* ===== Mostrar QR inline ===== */
+function displayInlineQRCode(result) {
+  qrLoading.style.display = 'none';
+  qrDisplay.style.display = 'block';
+
+  const amountBOB = (typeof result.amount_bob === 'number')
+    ? result.amount_bob
+    : (typeof result.amount === 'number' ? result.amount : BASE_PRICE);
+
+  qrTotalPrice.textContent = fmt(amountBOB);
+
+  if (result.qr_code_image) {
+    qrImage.src = result.qr_code_image.startsWith('data:image')
+      ? result.qr_code_image
+      : `data:image/png;base64,${result.qr_code_image}`;
+  }
+
+  // reset status ao gerar novo QR
+  paymentStatus.textContent = 'Pendiente';
+  paymentStatus.parentElement.className = 'alert alert-info mt-3';
+
+  startPaymentCheck();
+}
+
+/* ===== API: criar pagamento ===== */
+async function processPayment(paymentData, isRegeneration = false) {
+  if (isProcessing) return;
+  isProcessing = true;
+
+  try {
+    if (!isRegeneration) {
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Procesando...';
+    }
+
+    // garantir que a área do QR esteja visível enquanto (re)gera
+    qrCodeSection.style.display = 'block';
+    qrLoading.style.display = 'block';
+    qrDisplay.style.display = 'none';
+
+    if (!isRegeneration) {
+      qrCodeSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    const resp = await fetch(`${API_BASE}/api/create-payment`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(paymentData)
+    });
+
+    const result = await resp.json();
+    if (!resp.ok || !result.success) {
+      const msg = result?.error || 'Error desconocido al crear el pago';
+      throw new Error(msg);
+    }
+
+    currentQRId = result.qr_id || result.payment_id;
+    qrEverGenerated = true;
+
+    // pequeno delay para UX
+    setTimeout(() => displayInlineQRCode(result), 400);
+  } catch (err) {
+    console.error(err);
+    qrCodeSection.style.display = 'none';
+    showToast('Error al procesar el pago: ' + err.message, 'danger');
+  } finally {
+    isProcessing = false;
+    if (!isRegeneration) {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = '<i class="fas fa-lock"></i> FINALIZAR COMPRA SEGURA';
+    }
+  }
+}
+
+/* ===== API: verificar estado ===== */
+async function checkPaymentStatusInline() {
+  if (!currentQRId) return;
+
+  const btn = checkPaymentInlineBtn;
+  const original = btn.innerHTML;
+
+  try {
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verificando...';
+
+    const resp = await fetch(`${API_BASE}/api/payment-status/${currentQRId}`);
+    const result = await resp.json();
+
+    if (result.success && (result.is_paid || result.status === 'paid')) {
+      clearInterval(paymentCheckInterval);
+      paymentStatus.parentElement.className = 'alert alert-success mt-3';
+      paymentStatus.parentElement.innerHTML = `
+        <i class="fas fa-check-circle"></i>
+        <strong>¡Pago aprovado!</strong> Tu compra fue procesada exitosamente.
+      `;
+      btn.style.display = 'none';
+
+      // redireciona e passa alguns params úteis
+      const pid   = encodeURIComponent(currentQRId || '');
+      const total = encodeURIComponent(document.getElementById('totalPrice')?.textContent?.trim() || '');
+      const name  = encodeURIComponent(document.getElementById('nombre')?.value || '');
+      setTimeout(() => {
+        window.location.href = `index2.html?pid=${pid}&amount=${total}&name=${name}`;
+      }, 800);
+
+    } else if (result.success) {
+      paymentStatus.textContent = 'Pendiente';
+    } else {
+      paymentStatus.textContent = 'Error al verificar';
+      showToast('Error al verificar el pago', 'danger');
+    }
+  } catch (e) {
+    paymentStatus.textContent = 'Error de conexión';
+    showToast('Error de conexión al verificar el pago', 'danger');
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = original;
+  }
+}
+
+checkPaymentInlineBtn.addEventListener('click', checkPaymentStatusInline);
+
+function startPaymentCheck() {
+  if (paymentCheckInterval) clearInterval(paymentCheckInterval);
+  paymentCheckInterval = setInterval(checkPaymentStatusInline, 5000);
+}
+
+/* ===== Helpers ===== */
+function showToast(message, type = 'warning') {
+  const el = document.createElement('div');
+  el.className = `alert alert-${type} position-fixed`;
+  el.style.cssText = 'top:20px;right:20px;z-index:9999;min-width:300px;box-shadow:0 4px 15px rgba(0,0,0,.2)';
+  el.innerHTML = message;
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 3000);
+}
+
+/* ===== Regenerar pagamento ao alterar extras ===== */
+async function regeneratePayment() {
+  if (isProcessing) return;
+
+  // Recria payload a partir do formulário + extras atuais
+  const formData = new FormData(form);
+  const { total, selectedExtras } = updatePricing();
+
+  const payload = {
+    customer: {
+      name:  formData.get('nombre'),
+      email: formData.get('email'),
+      phone: formData.get('telefono')
+    },
+    amount: total, // Bs
+    extras: selectedExtras,
+    product: 'Mentoría de Cero al Millón',
+    product_type: 'main' // <<< importante
+  };
+
+  // reset UI do QR e polling
+  qrCodeSection.style.display = 'block';
+  qrLoading.style.display = 'block';
+  qrDisplay.style.display = 'none';
+  paymentStatus.textContent = 'Pendiente';
+  paymentStatus.parentElement.className = 'alert alert-info mt-3';
+  if (paymentCheckInterval) clearInterval(paymentCheckInterval);
+
+  await processPayment(payload, /*isRegeneration*/ true);
+}
+
+const debouncedRegenerate = debounce(regeneratePayment, 800);
+
+function handleExtrasChange() {
+  updatePricing();
+  if (qrEverGenerated) {
+    debouncedRegenerate();
+  }
+}
+
+/* ===== Listeners ===== */
+checkboxes.forEach(cb => cb.addEventListener('change', handleExtrasChange));
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const formData = new FormData(form);
+  const { total, selectedExtras } = updatePricing();
+
+  const payload = {
+    customer: {
+      name:  formData.get('nombre'),
+      email: formData.get('email'),
+      phone: formData.get('telefono')
+    },
+    amount: total, // Bs
+    extras: selectedExtras,
+    product: 'Mentoría de Cero al Millón',
+    product_type: 'main' // <<< importante
+  };
+
+  await processPayment(payload);
+});
+
+/* init */
+updatePricing();
+</script>
+
+<script>
+// ===== Countdown (oferta) =====
+const COUNTDOWN_MINUTES = 7;                         // duração da oferta
+const LS_KEY_DEADLINE   = 'oferta_deadline_ts';      // chave do localStorage
+
+const countdownEl      = document.getElementById('countdown');
+const ofertaExpiradaEl = document.getElementById('oferta-expirada');
+
+let countdownTimer = null;
+
+function two(n){ return String(n).padStart(2,'0'); }
+
+function getOrCreateDeadline(minutes) {
+  const saved = localStorage.getItem(LS_KEY_DEADLINE);
+  const now   = Date.now();
+
+  // Se existe e ainda não expirou, reaproveita
+  if (saved && Number(saved) > now) return Number(saved);
+
+  // Cria um novo deadline
+  const deadline = now + minutes * 60 * 1000;
+  localStorage.setItem(LS_KEY_DEADLINE, String(deadline));
+  return deadline;
+}
+
+function updateCountdown(deadlineTs) {
+  const now = Date.now();
+  let diff  = Math.max(0, Math.floor((deadlineTs - now) / 1000)); // em segundos
+
+  const mm = Math.floor(diff / 60);
+  const ss = diff % 60;
+
+  countdownEl.textContent = `${two(mm)}:${two(ss)}`;
+
+  if (diff === 0) {
+    clearInterval(countdownTimer);
+    handleOfferExpired();
+  }
+}
+
+function handleOfferExpired() {
+  // Mensagem visual
+  if (ofertaExpiradaEl) {
+    ofertaExpiradaEl.textContent = '¡Oferta expirada!';
+    ofertaExpiradaEl.classList.add('text-danger', 'fw-bold');
+  }
+  countdownEl.textContent = '00:00';
+
+  // Desabilita o checkout
+  const form = document.getElementById('checkoutForm');
+  const submitBtn = document.getElementById('submitBtn');
+  if (form) {
+    Array.from(form.elements).forEach(el => el.disabled = true);
+  }
+  if (submitBtn) {
+    submitBtn.classList.remove('btn-primary');
+    submitBtn.classList.add('btn-secondary');
+    submitBtn.innerHTML = '<i class="fas fa-hourglass-end"></i> Oferta expirada';
+  }
+
+  // Se quiser, limpe o QR exibido
+  const qrCodeSection = document.getElementById('qrCodeSection');
+  if (qrCodeSection) qrCodeSection.style.display = 'none';
+}
+
+function startCountdown() {
+  const deadline = getOrCreateDeadline(COUNTDOWN_MINUTES);
+  updateCountdown(deadline); // atualiza de imediato
+
+  countdownTimer = setInterval(() => {
+    updateCountdown(deadline);
+  }, 1000);
+}
+
+// Inicia ao carregar
+startCountdown();
+</script>
+
+</body>
+</html>
