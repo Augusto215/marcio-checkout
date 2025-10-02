@@ -46,22 +46,24 @@
 
           <div class="benefits-list py-4">
             <div class="benefit-item"><i class="fas fa-check-circle"></i><span>Acceso a las clases inmediatamente después de la compra</span></div>
-            <div class="benefit-item"><i class="fas fa-check-circle"></i><span>Aclaración de dudas y acompañamiento en vivo</span></div>
+            <div class="benefit-item"><i class="fas fa-check-circle"></i><span>4 clases de acompañamiento en linea y al vivo</span></div>
+            <div class="benefit-item"><i class="fas fa-check-circle"></i><span>Video clases gravadas ordenadas estrategicamente para seguir paso a paso</span></div>
+            <div class="benefit-item"><i class="fas fa-check-circle"></i><span>Material de apoyo escrito listo para descargar</span></div>
             <div class="benefit-item"><i class="fas fa-check-circle"></i><span>Todos los pasos que necesitas para ser millonario</span></div>
-            <div class="benefit-item"><i class="fas fa-gift"></i><span>Sorteo de 3 notebooks para los primeros 50 inscritos</span></div>
-            <div class="benefit-item"><i class="fas fa-plane"></i><span>Viaje todo pagado a Brasil con estilo de vida millonario</span></div>
+            <div class="benefit-item"><i class="fas fa-gift"></i><span>Sorteo de notebooks para los primeros 50 inscritos</span></div>
+            <div class="benefit-item"><i class="fas fa-plane"></i><span>Sorteo de un viaje internacional al estilo millonario</span></div>
           </div>
 
           <div class="motivational-section">
             <div class="motivational-card">
               <h4><i class="fas fa-rocket"></i> ¡Tu transformación comienza HOY!</h4>
-              <p>No esperes más para cambiar tu realidad financiera. Miles de personas ya han transformado sus vidas con esta mentoría exclusiva.</p>
+              <p>No esperes más para cambiar tu realidad financiera. Cientos de personas ya han transformado sus vidas con esta mentoría exclusiva.</p>
               <div class="stats-row">
-                <div class="stat-item"><div class="stat-number">+5,000</div><div class="stat-label">Estudiantes</div></div>
+                <div class="stat-item"><div class="stat-number">+1,000</div><div class="stat-label">Estudiantes</div></div>
                 <div class="stat-item"><div class="stat-number">98%</div><div class="stat-label">Satisfacción</div></div>
                 <div class="stat-item"><div class="stat-number">24/7</div><div class="stat-label">Soporte</div></div>
               </div>
-              <div class="urgency-text"><i class="fas fa-fire"></i> <strong>Solo quedan 12 cupos disponibles</strong></div>
+              <div class="urgency-text"><i class="fas fa-fire"></i> <strong>Solo quedan <span id="cupos-disponibles">24</span> cupos disponibles</strong></div>
             </div>
           </div>
         </div>
@@ -561,8 +563,10 @@ const LS_KEY_DEADLINE   = 'oferta_deadline_ts';      // chave do localStorage
 
 const countdownEl      = document.getElementById('countdown');
 const ofertaExpiradaEl = document.getElementById('oferta-expirada');
+const cuposEl          = document.getElementById('cupos-disponibles');
 
 let countdownTimer = null;
+let cuposReduced = false; // flag para evitar reduzir múltiplas vezes
 
 function two(n){ return String(n).padStart(2,'0'); }
 
@@ -587,6 +591,18 @@ function updateCountdown(deadlineTs) {
   const ss = diff % 60;
 
   countdownEl.textContent = `${two(mm)}:${two(ss)}`;
+
+  // Reduz cupos quando faltam 5:00 minutos (após 2 minutos de oferta)
+  if (mm < 5 && !cuposReduced && cuposEl) {
+    cuposEl.textContent = '12';
+    cuposReduced = true;
+    
+    // Adiciona um pequeno efeito visual
+    cuposEl.style.animation = 'pulse 0.5s ease-in-out';
+    setTimeout(() => {
+      if (cuposEl) cuposEl.style.animation = '';
+    }, 500);
+  }
 
   if (diff === 0) {
     clearInterval(countdownTimer);

@@ -498,3 +498,20 @@ body {
     background: #e55a2b;
     transform: translateY(-2px);
 }
+
+/* Animação para destacar mudança de cupos */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        color: inherit;
+    }
+    50% {
+        transform: scale(1.1);
+        color: var(--secondary-color);
+        text-shadow: 0 0 10px var(--secondary-color);
+    }
+    100% {
+        transform: scale(1);
+        color: inherit;
+    }
+}
